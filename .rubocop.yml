@@ -17,11 +17,15 @@ Style/Documentation:
 
 Metrics/MethodLength:
   Max: 20
-
+Metrics/ParameterLists:
+  Max: 50
 Metrics/AbcSize:
   Max: 30
 
 Style/GlobalVars:
+  Enabled: false
+
+Style/ClassVars:
   Enabled: false
 
 Style/WordArray:
