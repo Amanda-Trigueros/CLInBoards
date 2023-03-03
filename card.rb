@@ -3,7 +3,7 @@ class Card
 
   @@id_count = 0
 
-  def initialize(title:, members:, labels:, duedate:, id: nil, checklist: nil)
+  def initialize(title:, members:, labels:, duedate:, id: nil, checklist: [])
     @id = next_id(id)
     @title = title
     @members = members
@@ -57,15 +57,15 @@ class Card
   end
 end
 
-# data = {
-#  title: "Project",
-#  members: "Rossío, Sergio",
-#  labels: "coding",
-#  duedate: "2023-03-02",
-#  checklist: []
-#  }
-# test1 = Card.new(**data)
-# pp test1
+data = {
+  title: "Project",
+  members: "Rossío, Sergio",
+  labels: "coding",
+  duedate: "2023-03-02",
+  checklist: []
+}
+test1 = Card.new(**data)
+pp test1
 # test1.add_checklist("cook pasta")
 # test1.add_checklist("cook chifa")
 # pp test1.add_checklist("cook caucau")
