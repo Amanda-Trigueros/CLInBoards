@@ -1,34 +1,21 @@
 require_relative "lists"
 
 class Board
-  attr_reader :id, :list
+  attr_reader :id, :lists
   attr_accessor :name, :description
 
   @@id_count = 0
 
-  def initialize(name:, description:, id: nil, lists: [])
+  def initialize(name:, description:, id: nil, lists:[])
     @id = next_id(id)
     @name = name
     @description = description
     @lists = load_lists(lists)
   end
 
-  def add_list(list)
-    newlist = List.new(**list)
-    @lists << newlist
-  end
-
-  def update_list
+  def update(name: nil, description: nil)
     @name = name if name && !name.empty?
     @description = description if description && !description.empty?
-  end
-
-  def find_list
-    @lists.find { |list| list.id == id }
-  end
-
-  def delete_list
-    @lists.delete_if { |list| list.id == id }
   end
 
   def to_json(*_args)
@@ -41,9 +28,11 @@ class Board
   end
 
   def to_a
-    lists_count = "#{@lists.size} Lists"
-
-    [@id, @name, @description, lists_count]
+   lists_card = ""
+    @lists.each do |list| 
+      lists_card = lists_card + list.name + "(" + list.cards.size.to_s + "), "
+    end
+    [@id, @name, @description, lists_card]
   end
 
   private
@@ -63,19 +52,19 @@ class Board
   end
 end
 
-data = {
-  name: "LISTA1",
-  description: "Esta es la lista 1"
-}
-
-data1 = {
-  name: "IMPORTANTE"
-}
-
-test1 = Board.new(**data)
-pp test1
-test1.add_list(**data1)
-pp test1
+#data = {
+#  name: "LISTA1",
+#  description: "Esta es la lista 1"
+#}
+#
+#data1 = {
+#  name: "IMPORTANTE"
+#}
+#
+#test1 = Board.new(**data)
+#pp test1
+#test1.add_list(**data1)
+#pp test1
 # test1.add_checklist("cook pasta")
 # test1.add_checklist("cook chifa")
 # pp test1.add_checklist("cook caucau")
