@@ -66,12 +66,13 @@ class ClinBoards
       case option
       when "create-list"
         data = lists_form
-        @store.add_lists(data)
+
+        @store.add_lists(id,data)
       when "update-list"
         data = lists_form
-        @store.update_list(name, data)
+        @store.update_list(id, data, name)
       when "delete-list"
-        @store.delete_list(name)
+        @store.delete_list(id,name)
       when "back"
        # "devolver al menu boards"
         break
@@ -87,8 +88,8 @@ class ClinBoards
 
   def lists_form
     print "Name: "
-    name = gets.chomp
-    {name: name}
+    name_newlist = gets.chomp
+    {name: name_newlist}
   end
 
  

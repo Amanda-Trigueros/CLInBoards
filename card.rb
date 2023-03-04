@@ -43,7 +43,18 @@ class Card
   end
 
   def to_a
-    [@id, @title, @members.join(", "), @labels.join(", "), @due_date]
+    check= ""
+    count_true = 0
+    count_total = 0
+    @checklist.each do |checklist|
+     if checklist[:completed]
+      count_true += 1
+     end
+     count_total +=1
+    end
+    check = "#{count_true}" + "/" + "#{count_total}"
+    
+    [@id, @title, @members.join(", "), @labels.join(", "), @due_date,check ]
   end
 
   def next_id(id)

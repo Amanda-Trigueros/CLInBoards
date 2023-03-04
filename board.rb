@@ -18,6 +18,10 @@ class Board
     @description = description if description && !description.empty?
   end
 
+  def find_list(name)
+    @lists.find { |list| list.name== name}
+  end
+  
   def to_json(*_args)
     JSON.pretty_generate({
                            id: @id,

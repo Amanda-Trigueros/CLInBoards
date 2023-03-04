@@ -1,8 +1,8 @@
 require_relative "card"
 
 class List
-  attr_reader :id, :cards
-  attr_accessor :name
+  attr_reader :id 
+  attr_accessor :name, :cards
 
   @@id_count = 0
 

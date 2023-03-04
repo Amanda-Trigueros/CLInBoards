@@ -52,20 +52,33 @@ class Store
     tables_array
   end
 
-   def add_lists(list)
-     newlist = List.new(**list)
-     p newlist
-     @lists << newlist
-   end 
-   def update_list
-     @name = name if name && !name.empty?
-   end 
-   def find_lists
-     @lists.find { |list| list.id == id }
-   end 
-   def delete_list
-     @lists.delete_if { |list| list.id == id }
+   def add_lists(id,data_list)
+    p id
+    board = find_board(id)
+    board.lists << List.new(**data_list)
+    save
    end
+
+   def update_list(id,data_list, name)
+    board = find_board(id)
+    list = board.find_list(name)
+    list.update(**data_list)
+    save
+  end
+
+  def delete_list(id, name)
+    board = find_board(id)
+    board.lists.delete_if { |list| list.name == name}
+    save
+  end
+
+  
+   def find_lists
+    @lists.find { |list| list.id == id }
+  end
+
+ 
+
 
   private
 
