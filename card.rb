@@ -1,14 +1,14 @@
 class Card
-  attr_reader :id, :title, :members, :labels, :duedate, :checklist
+  attr_reader :id, :title, :members, :labels, :due_date, :checklist
 
   @@id_count = 0
 
-  def initialize(title:, members:, labels:, duedate:, id: nil, checklist: [])
+  def initialize(title:, members:, labels:, due_date:, id: nil, checklist: [])
     @id = next_id(id)
     @title = title
     @members = members
     @labels = labels
-    @duedate = duedate
+    @due_date = due_date
     @checklist = checklist
   end
 
@@ -37,13 +37,13 @@ class Card
                            title: @title,
                            members: @members,
                            labels: @labels,
-                           duedate: @duedate,
+                           due_date: @due_date,
                            checklist: @checklist
                          })
   end
 
   def to_a
-    [@id, @title, @members.join(", "), @labels.join(", "), @duedate]
+    [@id, @title, @members.join(", "), @labels.join(", "), @due_date]
   end
 
   def next_id(id)
@@ -55,17 +55,20 @@ class Card
     end
     @@id_count
   end
+  
 end
 
-data = {
-  title: "Project",
-  members: "Rossío, Sergio",
-  labels: "coding",
-  duedate: "2023-03-02",
-  checklist: []
-}
-test1 = Card.new(**data)
-pp test1
+# data = {
+#   title: "Project",
+#   members: "Rossío, Sergio",
+#   labels: "coding",
+#   duedate: "2023-03-02",
+#   checklist: []
+# }
+
+# test1 = Card.new(**data)
+
+#pp test1
 # test1.add_checklist("cook pasta")
 # test1.add_checklist("cook chifa")
 # pp test1.add_checklist("cook caucau")

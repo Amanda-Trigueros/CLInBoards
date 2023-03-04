@@ -1,7 +1,7 @@
 require_relative "card"
 
 class List
-  attr_reader :id, :card
+  attr_reader :id, :cards
   attr_accessor :name
 
   @@id_count = 0
@@ -12,10 +12,10 @@ class List
     @cards = load_cards(cards)
   end
 
-  # def create_card(form)
-  #   newcard = Card.new(form)
-  #   @cards << newcard
-  # end
+  def create_card(form)
+    newcard = Card.new(form)
+    @cards << newcard
+  end
 
   def create_card(form)
     newcard = Card.new(title: form[:title], members: form[:members], labels: form[:labels], duedate: form[:duedate])
